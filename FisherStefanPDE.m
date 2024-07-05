@@ -1,14 +1,14 @@
 function c = FisherStefanPDE(kappa)
     Y = 1; % Y domain corresponds to the transformed X domain
-    N1 = 100000;
+    N1 = 1e+5;
     dy = Y/(N1-1);
     y = linspace(0, Y, N1);
 
     T = 10;
-    N2 = 10000;
+    N2 = 1e+4;
     dt = T/N2;
 
-    M = 10000; % M should be sufficiently large
+    M = 1e+4; % M should be sufficiently large
     L0 = 1; % Initial value of L(t) at t=0
     L = L0; % Initialize L(t) with its initial value
     alpha = M+L; % Initial value of M at t=0
@@ -31,8 +31,11 @@ function c = FisherStefanPDE(kappa)
         
         u = RK4total(p, u);
         
-        p.L = p.L+p.c*p.dt;
-        p.alpha = p.M+p.L;
+        % Update L using the Stefan condition
+        du_dy_at_L = (u(N1)-u(N1-1))/p.dy;
+        p.L = p.L - (p.kappa/p.alpha) * du_dy_at_L * p.dt;
+
+        p.alpha = p.M + p.L;
 
         u(1) = u(2); % Apply Neumann boundary condition du/dy=0 at y=0
         u(end) = 0; % Apply Dirichlet boundary condition u(y=1,t)=0
