@@ -1,4 +1,4 @@
-function c = PDE(kappa)
+function c = Fisher-StefanPDE(kappa)
     Y = 1; % Y domain corresponds to the transformed X domain
     N1 = 100000;
     dy = Y/(N1-1);
