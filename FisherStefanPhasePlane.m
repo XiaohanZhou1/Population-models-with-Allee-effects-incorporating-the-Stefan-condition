@@ -1,4 +1,4 @@
-function kappa = Fisher-StefanPhasePlane(c)
+function kappa = FisherStefanPhasePlane(c)
     ode = @(U, V) -c-U*(1-U)/V;
 
     epsilon = 1e-8;
