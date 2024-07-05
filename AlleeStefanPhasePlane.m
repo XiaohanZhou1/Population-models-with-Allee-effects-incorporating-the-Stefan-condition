@@ -1,16 +1,40 @@
-function kappa = AlleeStefanPhasePlane(c)
-    a = 0.1;
-    ode = @(U, V) -c-U*(1-U)*(U-a)/V;
+% Input c, solve the ODE system to obtain kappa
+function kappa = AEPhasePlane(c, a)
+    z1 = 0;
+    z2 = 1e+13;
 
     epsilon = 1e-8;
-    u = [1, 0]; % We integrate from U=1 to U=0
-    V1 = -epsilon; % When U=1, V=0
+    U0 = 1-epsilon;
+    V0 = -epsilon;
+    y0 = [U0; V0];
     
-    options = odeset('RelTol', 1e-6, 'AbsTol', 1e-8);
-    [U, V] = ode15s(ode, u, V1, options); % Solve the ODE
+    options = odeset('RelTol', 1e-7, 'AbsTol', 1e-9);
+    [Z, Y] = ode15s(@(z, y) odes(z, y, c, a), [z1, z2], y0, options);
+
+    % Extract U and V from the solution Y
+    U = Y(:,1);
+    V = Y(:,2);
     
-    V0 = interp1(U, V(:,1), 0, 'linear', 'extrap'); % The value of V at U=0
-    kappa = -c/V0;
+    % Find the index I where U is closest to zero
+    [~, I] = min(abs(U));
     
-    % disp(['Calculated kappa: ', num2str(kappa)]);
+    % Check if the corresponding V is close enough to be considered as V at U=0
+    if abs(U(I)) < 1e-3 %1e-1
+        % Calculate kappa using the formula kappa = -c/V0
+        V0_at_U0 = V(I);  % V value when U is closest to zero
+        kappa = -c / V0_at_U0;
+        disp(['Calculated kappa = ', num2str(kappa)]);
+    else
+        disp('U=0 was not found in the calculated solution.');
+        kappa = NaN;
+    end
+end
+
+function dydz = odes(z, y, c, a)
+    U = y(1);
+    V = y(2);
+
+    dUdz = V;
+    dVdz = -c*V - U*(1-U)*(U-a);
+    dydz = [dUdz; dVdz];
 end
