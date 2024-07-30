@@ -1,6 +1,5 @@
-%cValues = [0.28, 0.50, 0.80];
-%cValues = [0.56, 0.60, 0.80];
-cValues = [0.54, 0.595];
+cValues = [0.56, 0.60, 0.80];
+
 z1 = -1e+13;
 z2 = 0;
 epsilon = 1e-8;
@@ -84,7 +83,7 @@ function dydz = odes(z, y, c)
     U = y(1);
     V = y(2);
 
-    a = 0.08;
+    a = 0.1;
 
     dUdz = V;
     dVdz = -c*V - U*(1-U)*(U-a);
