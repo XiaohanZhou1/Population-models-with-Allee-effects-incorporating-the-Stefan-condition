@@ -13,8 +13,8 @@ for i = 1:length(kappa_values)
 end
 
 % Theoretically simulated wave speeds
-a_theory = linspace(0, 0.55, 10000);
-c_theory = sqrt(2).*(1/2-a_theory);  % Simplified theoretical curve
+a_theory = linspace(0, 0.5, 10000);
+c_theory = sqrt(2).*(1/2-a_theory);  % Simplified theoretical curve with k=D=1
 
 % Prepare the figure
 figure;
