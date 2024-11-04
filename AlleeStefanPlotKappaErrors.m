@@ -67,8 +67,6 @@ for i = 1:length(kappa_values)
     [Z, Y] = ode15s(@(z, y) odes(z, y, c), [z1, z2], y0, options);
 
 
-
-
     % Extract U and V from the solution Y
     U = Y(:,1);
     V = Y(:,2);
