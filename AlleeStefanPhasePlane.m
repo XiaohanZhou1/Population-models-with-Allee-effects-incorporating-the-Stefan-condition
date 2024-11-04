@@ -1,5 +1,5 @@
 % Input c, solve the ODE system to obtain kappa
-function kappa = AEPhasePlane(c, a)
+function kappa = AlleeStefanPhasePlane(c, a)
     z1 = 0;
     z2 = 1e+13;
 
