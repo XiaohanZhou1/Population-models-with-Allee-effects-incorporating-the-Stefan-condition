@@ -1,6 +1,6 @@
 function c = AlleeStefanPDE(kappa, a)
     Y = 1; % Y domain corresponds to the transformed X domain
-    N1 = 2e+5;
+    N1 = 2e+3;
     dy = Y/(N1-1);
     y = linspace(0, Y, N1);
 
