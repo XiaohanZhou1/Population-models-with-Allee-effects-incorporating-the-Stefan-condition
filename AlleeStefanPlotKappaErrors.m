@@ -8,7 +8,7 @@ for i = 1:length(kappa_values)
     kappa = kappa_values(i);
     
     Y = 1; % Y domain corresponds to the transformed X domain
-    N1 = 1e+4;
+    N1 = 2e+3;
     dy = Y/(N1-1);
     y = linspace(0, Y, N1);
     
