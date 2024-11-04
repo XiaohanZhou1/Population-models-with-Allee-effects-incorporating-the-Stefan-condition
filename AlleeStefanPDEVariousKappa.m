@@ -6,7 +6,7 @@ dy = Y/(N1-1);
 y = linspace(0, Y, N1);
 
 T = 100;
-N2 = 1e+5;
+N2 = 2e+4;
 dt = T/N2;
 
 M = 1e+5;
