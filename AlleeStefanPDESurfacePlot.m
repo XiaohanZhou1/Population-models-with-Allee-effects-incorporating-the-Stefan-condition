@@ -5,7 +5,7 @@ function c = AlleeStefanPDESurfacePlot(kappa, a)%y-t
     dy = Y / (N1 - 1);
     y = linspace(0, Y, N1);
 
-    T = 100; % Adjust as needed
+    T = 10; % Adjust as needed
     N2 = 1e+3; % Initial size for debugging
     dt = T / N2;
 
