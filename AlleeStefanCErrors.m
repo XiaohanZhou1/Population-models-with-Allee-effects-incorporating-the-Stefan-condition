@@ -41,12 +41,12 @@ for i = 1:length(c_values)
 
     
     Y = 1; % Y domain corresponds to the transformed X domain
-    N1 = 80000;
+    N1 = 2e+3;
     dy = Y/(N1-1);
     y = linspace(0, Y, N1);
     
-    T = 10;
-    N2 = 100000;
+    T = 100;
+    N2 = 1e+4;
     dt = T/N2;
     
     M = 10000; % M should be sufficiently large
