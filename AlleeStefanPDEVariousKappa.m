@@ -1,7 +1,7 @@
 kappa_values = [0, 5, 20, 30, 50];
 
 Y = 1;
-N1 = 2e+5;
+N1 = 2e+3;
 dy = Y/(N1-1);
 y = linspace(0, Y, N1);
 
